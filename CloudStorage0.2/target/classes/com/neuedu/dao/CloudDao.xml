@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neuedu.dao.CloudDao">
+  <select id="queryFiles" resultType="com.neuedu.pojos.Cloud">
+    select id,filename,filesize,createdate from cloud order by createdate desc
+  </select>
+  
+  <insert id="addFile">
+  	insert into cloud (filename,filesize) values(#{arg0},#{arg1}); 
+  </insert>
+  
+  <select id="downLoad" parameterType="int" resultType="java.lang.String">
+    select filename from cloud where id = #{arg0}
+  </select>
+</mapper>
